@@ -1,11 +1,30 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import { App } from '../components/App'
+import Logo from '../components/Logo.astro'
+import Header from '../components/Header.astro'
+import Heading from '../components/Heading.astro'
+import Layout from '../layouts/Layout.astro'
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+  title="Join Our Newsletter | devChallenges.io"
+  description="Newsletter challenge with HTML and CSS to test your skills in basic HTML and CSS and working with input and button elements"
+>
+  <div class="2xs:px-6 flex min-h-screen flex-col items-center justify-center gap-8 px-4 sm:gap-16">
+    <Header>
+      <Logo slot="logo" />
+      <Heading slot="copy" />
+    </Header>
+    <main
+      class="shadow-3xl 2xs:p-6 2xs:gap-6 2xs:rounded-2xl flex w-full max-w-[35rem] flex-col gap-4 rounded-xl bg-white p-4"
+    >
+      <App client:load />
+      <p class="text-sm leading-relaxed">
+        Your email is 100% confidential and won’t send you any spam.
+      </p>
+    </main>
+  </div>
 </Layout>
