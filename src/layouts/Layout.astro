@@ -7,9 +7,30 @@ import '../styles/global.css'
 interface Props {
   title: string
   description: string
+  keywords?: string
+  author?: string
+  ogType?: string
+  ogUrl?: string
+  ogImage?: string
+  ogImageType?: string
+  ogImageAlt?: string
+  ogImageWidth?: number
+  ogImageHeight?: number
 }
 
-const { title, description } = Astro.props
+const {
+  title,
+  description,
+  keywords,
+  author,
+  ogType,
+  ogUrl,
+  ogImage,
+  ogImageType,
+  ogImageAlt,
+  ogImageWidth,
+  ogImageHeight,
+} = Astro.props
 ---
 
 <!doctype html>
@@ -18,6 +39,17 @@ const { title, description } = Astro.props
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
+    {keywords && <meta name="keywords" content={keywords} />}
+    {author && <meta name="author" content={author} />}
+    <meta property="og:title" content={title} />
+    {ogType && <meta property="og:type" content={ogType} />}
+    <meta property="og:description" content={description} />
+    {ogUrl && <meta property="og:url" content={ogUrl} />}
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    {ogImageType && <meta property="og:image:type" content={ogImageType} />}
+    {ogImageAlt && <meta property="og:image:alt" content={ogImageAlt} />}
+    {ogImageWidth && <meta property="og:image:width" content={ogImageWidth.toString()} />}
+    {ogImageHeight && <meta property="og:image:height" content={ogImageHeight.toString()} />}
     <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="96x96" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>

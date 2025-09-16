@@ -38,7 +38,7 @@ export const Form = ({ handleClick }: Props) => {
           aria-invalid={errors.email ? 'true' : 'false'}
           placeholder="Enter your email address"
           autoComplete="email"
-          className="bg-alabaster border-athens-gray placeholder:text-pale-sky 2xs:rounded-[0.625rem] 2xs:p-2.5 2xs:text-base rounded-md border p-2 text-center leading-loose"
+          className={`bg-alabaster placeholder:text-pale-sky 2xs:rounded-[0.625rem] 2xs:p-2.5 2xs:text-base rounded-md border p-2 text-center leading-loose ${!errors.email ? 'border-athens-gray' : 'border-2 border-red-700'}`}
         />
         {errors.email && (
           <p role="alert" className="text-xs text-red-700">
@@ -50,6 +50,7 @@ export const Form = ({ handleClick }: Props) => {
         type="submit"
         value="Subscribe now"
         className="bg-cerulean-blue border-cerulean-blue 2xs:rounded-[0.625rem] 2xs:p-2.5 2xs:text-base rounded-md border p-2 leading-loose font-medium text-white"
+        aria-label="button"
       />
     </form>
   )
