@@ -1,16 +1,12 @@
 import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import * as z from 'zod'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { object, string, type InferType } from 'yup'
 
-const Schema = z.object({
-  email: z
-    .string()
-    .trim()
-    .nonempty({ message: 'The email field is empty' })
-    .email({ message: 'Email Address is required.' }),
+const Schema = object({
+  email: string().email('Email Address is required.').required('The email field is empty'),
 })
 
-type Email = z.infer<typeof Schema>
+type Email = InferType<typeof Schema>
 
 type Props = {
   handleClick: () => void
@@ -22,7 +18,7 @@ export const Form = ({ handleClick }: Props) => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm({ resolver: zodResolver(Schema) })
+  } = useForm({ resolver: yupResolver(Schema) })
 
   const onSubmit = (data: Email) => {
     console.log(data)
@@ -49,7 +45,7 @@ export const Form = ({ handleClick }: Props) => {
       <input
         type="submit"
         value="Subscribe now"
-        className="bg-cerulean-blue border-cerulean-blue 2xs:rounded-[0.625rem] 2xs:p-2.5 2xs:text-base rounded-md border p-2 leading-loose font-medium text-white"
+        className="bg-cerulean-blue border-cerulean-blue 2xs:rounded-[0.625rem] 2xs:p-2.5 2xs:text-base cursor-pointer rounded-md border p-2 leading-loose font-medium text-white transition-colors duration-300 hover:border-blue-800 hover:bg-blue-800"
         aria-label="button"
       />
     </form>
