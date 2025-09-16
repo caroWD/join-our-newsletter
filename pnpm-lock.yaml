@@ -47,9 +47,6 @@ importers:
       yup:
         specifier: ^1.7.0
         version: 1.7.0
-      zod:
-        specifier: ^3.25.76
-        version: 3.25.76
     devDependencies:
       '@eslint/js':
         specifier: ^9.35.0
